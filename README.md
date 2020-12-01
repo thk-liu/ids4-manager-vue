@@ -17,3 +17,24 @@ const BaseUrlApi = 'http://localhost:65115'
 
 - 运行命令 yarn 安装依赖包
 - 运行 yarn serve 即可运行
+
+> 如果发现登录不成功在 src/login.js 内配置好自己的认证信息
+
+```js
+export function tenantLogin(parameter) {
+  let formData = new FormData()
+  formData.append('grant_type', 'password')
+  // 这里配置作用域
+  formData.append('scope', 'BackendAdminAppGateway OrderService ProductService PriceService AgentService CorpService')
+  formData.append('username', parameter.username)
+  formData.append('password', parameter.password)
+  // 这里配置client
+  formData.append('client_id', 'authserver')
+  formData.append('client_secret', '1q2w3e*')
+
+  return axios.post('/connect/token', formData, {
+    baseURL: server.AuthUrlApi,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  })
+}
+```
