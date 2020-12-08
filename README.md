@@ -22,6 +22,7 @@ const BaseUrlApi = 'http://localhost:65115'
 
 ```js
 export function tenantLogin(parameter) {
+  /*ids3.x */
   let formData = new FormData()
   formData.append('grant_type', 'password')
   // 这里配置作用域
@@ -36,5 +37,19 @@ export function tenantLogin(parameter) {
     baseURL: server.AuthUrlApi,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
   })
+
+  /*ids4.x */
+  //let param = {
+  //    grant_type: 'password',
+  //    scope: 'BackendAdminAppGateway OrderService ProductService PriceService AgentService CorpService',
+  //    username: parameter.username,
+  //    password: parameter.password,
+  //    client_id: 'authserver',
+  //    client_secret: '1q2w3e*'
+  //}
+  //return axios.post('/connect/token', Qs.stringify(param), {
+  //    baseURL: server.AuthUrlApi,
+  //    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  //});
 }
 ```

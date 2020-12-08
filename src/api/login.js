@@ -1,4 +1,5 @@
 import api from './index'
+import Qs from 'qs'
 // import * as _axios from 'axios'
 import { axios } from '@/utils/request'
 import server from '@/utils/server'
@@ -71,11 +72,12 @@ export function get2step(parameter) {
 }
 
 export function tenantLogin(parameter) {
+    /*ids3.x */
     let formData = new FormData();
     formData.append("grant_type", "password");
     formData.append("scope", "BackendAdminAppGateway OrderService ProductService PriceService AgentService CorpService");
     formData.append("username", parameter.username);
-    formData.append("password", parameter.password)
+    formData.append("password", parameter.password);
     formData.append("client_id", "authserver");
     formData.append("client_secret", "1q2w3e*");
 
@@ -83,4 +85,18 @@ export function tenantLogin(parameter) {
         baseURL: server.AuthUrlApi,
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     });
+
+    // /*ids4.x */
+    // let param = {
+    //    grant_type: 'password',
+    //    scope: 'BackendAdminAppGateway OrderService ProductService PriceService AgentService CorpService',
+    //    username: parameter.username,
+    //    password: parameter.password,
+    //    client_id: 'authserver',
+    //    client_secret: '1q2w3e*'
+    // }
+    // return axios.post('/connect/token', Qs.stringify(param), {
+    //    baseURL: server.AuthUrlApi,
+    //    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    // });
 }
